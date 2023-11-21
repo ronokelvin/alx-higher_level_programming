@@ -1,21 +1,30 @@
 #!/usr/bin/python3
-# 3-safe_print_division.py
+# 4-list_division.py
 
-def safe_print_division(a, b):
-    """
-    Safely divides a by b and returns the result.
+def list_division(my_list_1, my_list_2, list_length):
+    """Element-wise division of two lists.
 
     Args:
-        a (int): Numerator.
-        b (int): Denominator.
+        my_list_1 (list): The first list.
+        my_list_2 (list): The second list.
+        list_length (int): Number of elements to divide.
 
     Returns:
-        float: The result of division if successful, None otherwise.
+        A new list of length list_length containing division results.
     """
-    try:
-        result = a / b
-    except (TypeError, ZeroDivisionError):
-        result = None
-    finally:
-        print("Inside result: {}".format(result))
-    return result
+    new_list = []
+    for i in range(0, list_length):
+        try:
+            div = my_list_1[i] / my_list_2[i]
+        except TypeError:
+            print("Type error")
+            div = 0
+        except ZeroDivisionError:
+            print("Division by zero")
+            div = 0
+        except IndexError:
+            print("Index out of range")
+            div = 0
+        finally:
+            new_list.append(div)
+    return new_list
